@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Bebas_Neue, Work_Sans } from 'next/font/google';
+import Providers from './providers';
 import './globals.css';
 
 const bebas = Bebas_Neue({
@@ -28,7 +29,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${bebas.variable} ${workSans.variable}`}>{children}</body>
+      <body className={`${bebas.variable} ${workSans.variable}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
