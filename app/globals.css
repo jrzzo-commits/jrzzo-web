@@ -88,11 +88,11 @@ button:focus-visible {
 
 .logo-mark {
   display: block;
-  width: auto !important;
-  height: clamp(24px, 3.6vw, 38px) !important;
+  width: auto;
+  height: clamp(24px, 3.6vw, 38px);
   max-width: min(62vw, 188px);
   object-fit: contain;
-  filter: invert(1) brightness(1.22) contrast(1.08) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  filter: brightness(1.08) contrast(1.06) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
 }
 
 .nav-link {
@@ -797,9 +797,9 @@ button:focus-visible {
     max-width: 100%;
   }
   .logo-mark {
-    height: 30px !important;
+    height: 30px;
     max-width: 62vw;
-    filter: invert(1) brightness(1.35) contrast(1.16) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.42));
+    filter: brightness(1.2) contrast(1.1) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.42));
   }
   .nav-link {
     font-size: 0.62rem;
