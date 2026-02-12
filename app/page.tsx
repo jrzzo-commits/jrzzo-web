@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import BrandLogo from '../components/brand-logo';
 
 const brandSignals = [
   { id: '6886', src: '/brand/img_6886.jpg', width: 1000, height: 1000 },
@@ -15,14 +16,31 @@ const submissions = [
   { id: '6557', src: '/submissions/img_6557.jpg', width: 1400, height: 2000 }
 ];
 
+const rzzodueVideos = [
+  { id: 'feb11', src: '/videos/rzzodue/feb-11.mp4', label: 'Rzzodue Process • Feb 11, 2026' },
+  { id: 'feb6', src: '/videos/rzzodue/feb-6.mp4', label: 'Rzzodue Process • Feb 6, 2026' }
+];
+
+const submissionVideos = [
+  { id: 'jan27', src: '/videos/submissions/jan-27.mp4', label: 'Contest Submission • Jan 27, 2026' }
+];
+
+const plotSignals = [
+  { id: '7690', src: '/plots/img_7690.jpg', width: 2751, height: 2712 },
+  { id: '7691', src: '/plots/img_7691.jpg', width: 2723, height: 2752 },
+  { id: '7700', src: '/plots/img_7700.jpg', width: 2764, height: 3480 }
+];
+
 export default function HomePage() {
   return (
     <>
       <header className="site-header">
         <div className="header-wrap">
-          <Link href="/" className="logo">JRZZO</Link>
+          <BrandLogo />
           <div className="header-actions">
+            <Link href="/whitepaper" className="nav-link">Whitepaper</Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
+            <Link href="/plots" className="nav-link">Plots</Link>
             <a href="#submissions" className="nav-link">Submissions</a>
             <Link href="/rzzodue" className="nav-link">Enter Drop</Link>
           </div>
@@ -100,6 +118,37 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="detail-panel reveal reveal-delay-2">
+          <h2 className="section-title" style={{ marginTop: 0 }}>Plots</h2>
+          <p>Pen-plot discipline archive and focused studies feeding the broader JRZZO visual language.</p>
+          <div className="signal-grid">
+            {plotSignals.map((item) => (
+              <article className="signal-card" key={item.id}>
+                <Image src={item.src} alt={`Plot signal ${item.id}`} width={item.width} height={item.height} />
+                <span className="signal-tag">Plot #{item.id}</span>
+              </article>
+            ))}
+          </div>
+          <div className="actions" style={{ marginTop: '0.9rem' }}>
+            <Link href="/plots" className="btn">Open Full Plots Tab</Link>
+          </div>
+        </section>
+
+        <section className="detail-panel reveal reveal-delay-2">
+          <h2 className="section-title" style={{ marginTop: 0 }}>Rzzodue Videos</h2>
+          <p>Project process videos tied to the active Rzzodue drop narrative.</p>
+          <div className="video-grid">
+            {rzzodueVideos.map((item) => (
+              <article className="video-card" key={item.id}>
+                <video controls playsInline preload="metadata" className="video-el">
+                  <source src={item.src} type="video/mp4" />
+                </video>
+                <span className="video-label">{item.label}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="submissions" className="detail-panel reveal reveal-delay-2">
           <h2 className="section-title" style={{ marginTop: 0 }}>Recent Submissions</h2>
           <p>Selected entries from current creative submissions and contest work.</p>
@@ -108,6 +157,16 @@ export default function HomePage() {
               <article className="submission-card" key={item.id}>
                 <Image src={item.src} alt={`Submission ${item.id}`} width={item.width} height={item.height} />
                 <span className="signal-tag">Submission #{item.id}</span>
+              </article>
+            ))}
+          </div>
+          <div className="video-grid single-video" style={{ marginTop: '0.9rem' }}>
+            {submissionVideos.map((item) => (
+              <article className="video-card" key={item.id}>
+                <video controls playsInline preload="metadata" className="video-el">
+                  <source src={item.src} type="video/mp4" />
+                </video>
+                <span className="video-label">{item.label}</span>
               </article>
             ))}
           </div>

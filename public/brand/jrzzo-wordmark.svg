@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="jrzzo wordmark">
+  <defs>
+    <style>
+      .mark {
+        font-family: "Old English Text MT", "UnifrakturMaguntia", "Times New Roman", serif;
+        font-size: 132px;
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+    </style>
+  </defs>
+  <rect width="760" height="180" fill="none"/>
+  <text x="22" y="136" class="mark" fill="#f8f4f0">jrzzo</text>
+</svg>

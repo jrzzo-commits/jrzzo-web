@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import BrandLogo from '../../components/brand-logo';
 
 const editionSignals = [
-  { id: '6887', src: '/brand/img_6887.jpg', width: 1000, height: 1000 },
-  { id: '6551', src: '/brand/img_6551.jpg', width: 1000, height: 1000 },
-  { id: '6886', src: '/brand/img_6886.jpg', width: 1000, height: 1000 }
+  { id: '1839', src: '/open-editions/img_1839.jpg', width: 2580, height: 1924 },
+  { id: 'diqqjay', src: '/open-editions/diqqjay.jpg', width: 2016, height: 1504 }
 ];
 
 export default function OpenEditionsPage() {
@@ -12,11 +12,12 @@ export default function OpenEditionsPage() {
     <>
       <header className="site-header">
         <div className="header-wrap">
-          <Link href="/" className="logo">JRZZO</Link>
+          <BrandLogo />
           <div className="header-actions">
             <a href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer" className="nav-link">
               View on OpenSea
             </a>
+            <Link href="/plots" className="nav-link">Plots</Link>
             <Link href="/rzzodue" className="nav-link">Enter Drop</Link>
           </div>
         </div>
@@ -51,7 +52,7 @@ export default function OpenEditionsPage() {
         </section>
 
         <section className="detail-panel reveal reveal-delay-2">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Edition Signals</h2>
+          <h2 className="section-title" style={{ marginTop: 0 }}>Edition Visuals</h2>
           <div className="signal-grid">
             {editionSignals.map((item) => (
               <article className="signal-card" key={item.id}>

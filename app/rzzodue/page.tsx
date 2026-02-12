@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Countdown from '../../components/countdown';
 import MintPanel from '../../components/mint-panel';
 import RealmGallery from '../../components/realm-gallery';
+import BrandLogo from '../../components/brand-logo';
 import { collectionAddress } from '../../lib/thirdweb';
 
 const realms = [
@@ -34,9 +35,11 @@ export default function RzzoduePage() {
     <>
       <header className="site-header">
         <div className="header-wrap">
-          <Link href="/" className="logo">JRZZO</Link>
+          <BrandLogo />
           <div className="header-actions">
+            <Link href="/whitepaper" className="nav-link">Whitepaper</Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
+            <Link href="/plots" className="nav-link">Plots</Link>
             <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link">@jrzzo_</a>
             <Link href="/" className="nav-link">Back</Link>
           </div>
@@ -52,6 +55,9 @@ export default function RzzoduePage() {
             300 curated portals on Base with deterministic trait generation: rarity tiers, figure archetypes,
             figure numbers, signal strength, glyph count, and rarity-aware moods.
           </p>
+          <div className="actions">
+            <Link href="/whitepaper" className="btn">Read Whitepaper</Link>
+          </div>
         </section>
 
         <section className="trust-bar reveal reveal-delay-1">
@@ -131,11 +137,28 @@ export default function RzzoduePage() {
           </ul>
         </section>
 
+        <section className="detail-panel reveal reveal-delay-2">
+          <h2 className="section-title" style={{ marginTop: 0 }}>Project Signals</h2>
+          <p>Core campaign marks directly tied to the Rzzodue release.</p>
+          <div className="signal-grid">
+            <article className="signal-card">
+              <img src="/rzzodue-brand/agents-reversed.jpg" alt="Agents reversed the silence mark" />
+              <span className="signal-tag">Agents Reversed</span>
+            </article>
+            <article className="signal-card">
+              <img src="/rzzodue-brand/300-portals.jpg" alt="300 portals campaign mark" />
+              <span className="signal-tag">300 Portals</span>
+            </article>
+          </div>
+        </section>
+
         <section id="mint-panel" style={{ marginTop: '1rem' }} className="reveal reveal-delay-2">
           <MintPanel />
           <p className="footer-note">
             Follow launch updates on{' '}
             <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer">@jrzzo_</a>
+            {' '}•{' '}
+            <Link href="/whitepaper">Whitepaper</Link>
             {' '}• jrzzo.com/rzzodue
           </p>
         </section>
