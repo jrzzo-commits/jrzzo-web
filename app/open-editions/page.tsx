@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import BrandLogo from '../../components/brand-logo';
+import RealmGallery from '../../components/realm-gallery';
 
 const editionSignals = [
-  { id: '1839', src: '/open-editions/img_1839.jpg', width: 2580, height: 1924 },
-  { id: 'diqqjay', src: '/open-editions/diqqjay.jpg', width: 2016, height: 1504 }
+  { id: 'day', src: '/open-editions/som1-day.jpg', width: 2580, height: 1924 },
+  { id: 'night', src: '/open-editions/som1-night.jpg', width: 2016, height: 1504 }
 ];
 
 export default function OpenEditionsPage() {
@@ -26,10 +26,10 @@ export default function OpenEditionsPage() {
       <main className="main">
         <section className="hero reveal">
           <h1 className="hero-title">OPEN EDITIONS</h1>
-          <p className="hero-subtitle">JRZZO Archive</p>
+          <p className="hero-subtitle">S.O.M.1 • JRZZO Archive</p>
           <p className="hero-copy">
-            Previous JRZZO open edition release and continuity archive. Use this as historical provenance context ahead
-            of current and future drops.
+            S.O.M.1 is an art concept exploring Nature through digital design drawings, photography, and artificial
+            intelligence. The Shades of Midnight process was created over one year, and S.O.M.1 is the introduction piece by JRZZO.
           </p>
           <div className="actions">
             <a className="btn btn-primary" href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer">
@@ -40,7 +40,7 @@ export default function OpenEditionsPage() {
         </section>
 
         <section className="detail-panel reveal reveal-delay-1">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Collection Link</h2>
+          <h2 className="section-title" style={{ marginTop: 0 }}>Collection Context</h2>
           <ul className="detail-list">
             <li>
               <strong>OpenSea:</strong>{' '}
@@ -48,19 +48,23 @@ export default function OpenEditionsPage() {
                 opensea.io/collection/som1
               </a>
             </li>
+            <li><strong>Year:</strong> 2022</li>
+            <li><strong>Theme:</strong> Nature vs Nurture • Order vs Chaos</li>
+            <li><strong>Statement:</strong> We are all artists.</li>
           </ul>
+          <p style={{ marginTop: '0.8rem' }}>
+            The work explores the artist&apos;s journey into AI and Web3 through both the limits and chaos of human sight,
+            where a dream world emerges in the city of the mind&apos;s eye.
+          </p>
         </section>
 
-        <section className="detail-panel reveal reveal-delay-2">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Edition Visuals</h2>
-          <div className="signal-grid">
-            {editionSignals.map((item) => (
-              <article className="signal-card" key={item.id}>
-                <Image src={item.src} alt={`Edition signal ${item.id}`} width={item.width} height={item.height} />
-                <span className="signal-tag">Edition #{item.id}</span>
-              </article>
-            ))}
-          </div>
+        <h2 className="section-title reveal reveal-delay-2">Edition Visuals</h2>
+        <section className="reveal reveal-delay-2">
+          <RealmGallery
+            realms={editionSignals}
+            labelPrefix="S.O.M.1"
+            hintText="Tap or click any artwork to open full image."
+          />
         </section>
       </main>
     </>

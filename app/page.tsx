@@ -38,7 +38,6 @@ export default function HomePage() {
         <div className="header-wrap">
           <BrandLogo />
           <div className="header-actions">
-            <Link href="/whitepaper" className="nav-link">Whitepaper</Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <Link href="/plots" className="nav-link">Plots</Link>
             <a href="#submissions" className="nav-link">Submissions</a>
@@ -92,8 +91,8 @@ export default function HomePage() {
         <section id="open-editions" className="detail-panel reveal reveal-delay-1">
           <h2 className="section-title" style={{ marginTop: 0 }}>Open Editions</h2>
           <p>
-            Previous JRZZO open edition release is live on OpenSea. This section serves as continuity and provenance
-            context ahead of the Rzzodue mint.
+            S.O.M.1 (Shades of Midnight) is JRZZO&apos;s 2022 introduction piece, blending digital design drawings,
+            photography, and artificial intelligence into a single nature-focused concept.
           </p>
           <ul className="detail-list">
             <li>
@@ -102,6 +101,8 @@ export default function HomePage() {
                 opensea.io/collection/som1
               </a>
             </li>
+            <li><strong>Year:</strong> 2022</li>
+            <li><strong>Concept:</strong> Nature vs Nurture • Order vs Chaos</li>
           </ul>
         </section>
 
@@ -120,7 +121,7 @@ export default function HomePage() {
 
         <section className="detail-panel reveal reveal-delay-2">
           <h2 className="section-title" style={{ marginTop: 0 }}>Plots</h2>
-          <p>Pen-plot discipline archive and focused studies feeding the broader JRZZO visual language.</p>
+          <p>Pen-plot discipline archive produced in 2022 and expanded through recent studies feeding the JRZZO visual language.</p>
           <div className="signal-grid">
             {plotSignals.map((item) => (
               <article className="signal-card" key={item.id}>

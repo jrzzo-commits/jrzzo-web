@@ -37,7 +37,6 @@ export default function RzzoduePage() {
         <div className="header-wrap">
           <BrandLogo />
           <div className="header-actions">
-            <Link href="/whitepaper" className="nav-link">Whitepaper</Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <Link href="/plots" className="nav-link">Plots</Link>
             <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link">@jrzzo_</a>
