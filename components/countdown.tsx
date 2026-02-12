@@ -14,7 +14,7 @@ function format(ms: number): string {
 
 export default function Countdown() {
   const target = useMemo(() => {
-    const raw = process.env.NEXT_PUBLIC_MINT_START || '2026-02-16T17:00:00Z';
+    const raw = process.env.NEXT_PUBLIC_MINT_START || '2026-02-16T13:00:00Z';
     return new Date(raw).getTime();
   }, []);
 

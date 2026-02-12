@@ -17,10 +17,10 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   title: 'Rzzodue | jrzzo.com',
-  description: '300 on-chain desert realms. Free mint on Base.',
+  description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
   openGraph: {
     title: 'Rzzodue | jrzzo.com',
-    description: '300 on-chain desert realms. Free mint on Base.',
+    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
     url: 'https://jrzzo.com',
     siteName: 'jrzzo'
   }

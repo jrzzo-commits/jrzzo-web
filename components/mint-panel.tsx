@@ -6,11 +6,22 @@ import { ConnectButton, TransactionButton, useActiveAccount } from 'thirdweb/rea
 import { chain, client, collectionAddress } from '../lib/thirdweb';
 
 const MAX_SUPPLY = 300n;
+const BASESCAN_TX = 'https://basescan.org/tx/';
+
+function normalizeMintError(message: string): string {
+  if (message.includes('WalletLimitReached')) return 'Wallet limit reached: max 1 mint per wallet right now.';
+  if (message.includes('MintInactive')) return 'Mint is not active yet.';
+  if (message.includes('SoldOut')) return 'Sold out.';
+  if (message.includes('EnforcedPause')) return 'Mint is temporarily paused.';
+  if (message.toLowerCase().includes('user rejected')) return 'Transaction cancelled in wallet.';
+  return message;
+}
 
 export default function MintPanel() {
   const account = useActiveAccount();
   const [status, setStatus] = useState('Connect wallet to mint.');
   const [minted, setMinted] = useState<bigint>(0n);
+  const [lastTxHash, setLastTxHash] = useState('');
 
   const contract = useMemo(() => {
     if (!collectionAddress) return null;
@@ -45,6 +56,13 @@ export default function MintPanel() {
   }, [refreshMinted]);
 
   const supplyLeft = minted < MAX_SUPPLY ? MAX_SUPPLY - minted : 0n;
+  const soldOut = supplyLeft === 0n;
+  const mintDisabled = !account || soldOut;
+  const txUrl = lastTxHash ? `${BASESCAN_TX}${lastTxHash}` : '';
+  const shareText = `I minted Rzzodue on Base. Free mint, 300 supply, first 88 redemption eligible.`;
+  const shareTarget = encodeURIComponent('https://jrzzo.com/rzzodue');
+  const shareX = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${shareTarget}`;
+  const shareFarcaster = `https://warpcast.com/~/compose?text=${encodeURIComponent(`${shareText} https://jrzzo.com/rzzodue`)}`;
 
   if (!process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID) {
     return (
@@ -77,6 +95,11 @@ export default function MintPanel() {
       <p className="muted" style={{ marginTop: 4 }}>
         Minted: {minted.toString()} / {MAX_SUPPLY.toString()} · Left: {supplyLeft.toString()}
       </p>
+      {soldOut && (
+        <p className="muted" style={{ marginTop: 4, color: '#f8f4f0' }}>
+          Sold out.
+        </p>
+      )}
 
       <div style={{ display: 'flex', gap: 10, marginTop: 12, flexWrap: 'wrap' }}>
         <ConnectButton
@@ -88,32 +111,36 @@ export default function MintPanel() {
         />
 
         <TransactionButton
-          transaction={() =>
-            prepareContractCall({
+          transaction={() => {
+            if (!account) throw new Error('Connect wallet first.');
+            if (soldOut) throw new Error('Sold out.');
+            return prepareContractCall({
               contract,
               method: 'function publicMint()',
               params: []
-            })
-          }
+            });
+          }}
           onTransactionConfirmed={(receipt) => {
-            setStatus(`Mint confirmed: ${receipt.transactionHash}`);
+            setLastTxHash(receipt.transactionHash);
+            setStatus(`Mint confirmed.`);
             void refreshMinted();
           }}
           onError={(error) => {
-            setStatus(`Mint failed: ${error.message}`);
+            setStatus(`Mint failed: ${normalizeMintError(error.message)}`);
           }}
           style={{
             border: '1px solid rgba(248, 244, 240, 0.5)',
-            background: '#d61f26',
+            background: mintDisabled ? '#7b2a2d' : '#d61f26',
             color: '#fff',
             padding: '0.65rem 1rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            cursor: 'pointer'
+            cursor: mintDisabled ? 'not-allowed' : 'pointer',
+            opacity: mintDisabled ? 0.65 : 1
           }}
         >
-          Mint Rzzodue
+          {soldOut ? 'Sold Out' : 'Mint Rzzodue'}
         </TransactionButton>
       </div>
 
@@ -123,6 +150,17 @@ export default function MintPanel() {
       <p className="muted" style={{ marginTop: 6, wordBreak: 'break-word' }}>
         {status}
       </p>
+      {txUrl && (
+        <p className="muted" style={{ marginTop: 6, wordBreak: 'break-word' }}>
+          Tx: <a href={txUrl} target="_blank" rel="noreferrer">{lastTxHash}</a>
+        </p>
+      )}
+      {txUrl && (
+        <div style={{ display: 'flex', gap: 10, marginTop: 8, flexWrap: 'wrap' }}>
+          <a className="nav-link" href={shareX} target="_blank" rel="noreferrer">Share on X</a>
+          <a className="nav-link" href={shareFarcaster} target="_blank" rel="noreferrer">Share on Farcaster</a>
+        </div>
+      )}
     </div>
   );
 }
