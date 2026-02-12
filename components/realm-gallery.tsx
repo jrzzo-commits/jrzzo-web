@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 type Realm = {
   id: string;
@@ -22,6 +23,11 @@ export default function RealmGallery({
   hintText = 'Tap or click any image to view full size.'
 }: Props) {
   const [active, setActive] = useState<Realm | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!active) return;
@@ -58,34 +64,38 @@ export default function RealmGallery({
         ))}
       </section>
 
-      {active && (
-        <div className="lightbox-backdrop" onClick={() => setActive(null)} role="presentation">
-          <div
-            className="lightbox-panel"
-            onClick={(event) => event.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${labelPrefix} ${active.id} full image`}
-          >
-            <div className="lightbox-header">
-              <span className="lightbox-title">{labelPrefix} #{active.id}</span>
-              <button type="button" className="lightbox-close" onClick={() => setActive(null)}>
-                Close
-              </button>
+      {mounted && active
+        ? createPortal(
+            <div className="lightbox-backdrop" onClick={() => setActive(null)} role="presentation">
+              <div
+                className="lightbox-panel"
+                onClick={(event) => event.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${labelPrefix} ${active.id} full image`}
+              >
+                <div className="lightbox-header">
+                  <span className="lightbox-title">{labelPrefix} #{active.id}</span>
+                  <button type="button" className="lightbox-close" onClick={() => setActive(null)}>
+                    Close
+                  </button>
+                </div>
+                <div className="lightbox-image-wrap">
+                  <Image
+                    src={active.src}
+                    alt={`${labelPrefix} ${active.id} full size`}
+                    width={active.width}
+                    height={active.height}
+                    className="lightbox-image"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
-            <div className="lightbox-image-wrap">
-              <Image
-                src={active.src}
-                alt={`${labelPrefix} ${active.id} full size`}
-                width={active.width}
-                height={active.height}
-                className="lightbox-image"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      )}
+            ,
+            document.body
+          )
+        : null}
     </>
   );
 }
