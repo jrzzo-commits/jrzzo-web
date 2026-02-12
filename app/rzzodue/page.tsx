@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Countdown from '../../components/countdown';
 import MintPanel from '../../components/mint-panel';
+import RealmGallery from '../../components/realm-gallery';
 import { collectionAddress } from '../../lib/thirdweb';
 
 const realms = [
@@ -10,6 +10,19 @@ const realms = [
   { id: '6825', src: '/images/img_6825.jpg', width: 3477, height: 3500 },
   { id: '6827', src: '/images/img_6827.jpg', width: 3500, height: 3336 },
   { id: '6816', src: '/images/img_6816.jpg', width: 3500, height: 3150 }
+];
+
+const rarityBreakdown = [
+  { tier: 'Legendary', count: 9, share: '3%' },
+  { tier: 'Rare', count: 36, share: '12%' },
+  { tier: 'Uncommon', count: 90, share: '30%' },
+  { tier: 'Common', count: 165, share: '55%' }
+];
+
+const moodPools = [
+  { tier: 'Legendary', moods: 'Twilight Cipher, Obsidian Bloom, Ghost Frequency, Nocturne Heat' },
+  { tier: 'Rare', moods: 'Solar Drift, Echo Pulse, Neon Static, Monolith Calm, Twilight Cipher' },
+  { tier: 'Core', moods: 'Desert Mirage, Duststorm Signal, Analog Ritual, Silent Orbit, Monolith Calm, Echo Pulse' }
 ];
 
 export default function RzzoduePage() {
@@ -23,6 +36,7 @@ export default function RzzoduePage() {
         <div className="header-wrap">
           <Link href="/" className="logo">JRZZO</Link>
           <div className="header-actions">
+            <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link">@jrzzo_</a>
             <Link href="/" className="nav-link">Back</Link>
           </div>
@@ -30,17 +44,17 @@ export default function RzzoduePage() {
       </header>
 
       <main className="main">
-        <section className="hero">
+        <section className="hero reveal">
           <h1 className="hero-title">RZZODUE</h1>
           <p className="hero-subtitle">300 On-Chain Portals • Mint opens in <Countdown /></p>
           <p className="hero-time">Mint opens {launchEtLabel} • {launchUtc}</p>
           <p className="hero-copy">
-            Each realm carries source signal from Marfa, Mojave, and Death Valley. Trait stack includes pen gauge,
-            paper weight, plot duration, hatch density, and mood.
+            300 curated portals on Base with deterministic trait generation: rarity tiers, figure archetypes,
+            figure numbers, signal strength, glyph count, and rarity-aware moods.
           </p>
         </section>
 
-        <section className="trust-bar">
+        <section className="trust-bar reveal reveal-delay-1">
           <div className="trust-item">
             <span className="trust-label">Network</span>
             <span className="trust-value">Base Mainnet</span>
@@ -65,17 +79,38 @@ export default function RzzoduePage() {
           </div>
         </section>
 
-        <h2 className="section-title">Realm Gallery</h2>
-        <section className="gallery">
-          {realms.map((realm) => (
-            <article className="gallery-card" key={realm.id}>
-              <Image src={realm.src} alt={`Realm ${realm.id}`} width={realm.width} height={realm.height} />
-              <div className="tag">Realm #{realm.id}</div>
-            </article>
-          ))}
+        <section className="trait-grid reveal reveal-delay-1">
+          <article className="detail-panel trait-panel">
+            <h2 className="section-title" style={{ marginTop: 0 }}>Rarity Model</h2>
+            <p>
+              Finalized metadata is cohesive across all 300 tokens and locked to deterministic generation so rarity
+              and traits remain stable across marketplaces.
+            </p>
+            <div className="rarity-grid">
+              {rarityBreakdown.map((item) => (
+                <div key={item.tier} className="rarity-card">
+                  <span className="rarity-tier">{item.tier}</span>
+                  <span className="rarity-count">{item.count}</span>
+                  <span className="rarity-share">{item.share} of supply</span>
+                </div>
+              ))}
+            </div>
+          </article>
+          <article className="detail-panel trait-panel">
+            <h2 className="section-title" style={{ marginTop: 0 }}>Mood Engine</h2>
+            <p>Every token has a generated mood, weighted by rarity tier.</p>
+            <ul className="detail-list">
+              {moodPools.map((item) => (
+                <li key={item.tier}><strong>{item.tier}:</strong> {item.moods}</li>
+              ))}
+            </ul>
+          </article>
         </section>
 
-        <section className="detail-panel">
+        <h2 className="section-title reveal reveal-delay-2">Realm Gallery</h2>
+        <RealmGallery realms={realms} />
+
+        <section className="detail-panel reveal reveal-delay-2">
           <h2 className="section-title" style={{ marginTop: 0 }}>The Story</h2>
           <p>
             Rzzodue translates physical plotted etches into on-chain portals. The release is designed as a free claim
@@ -89,12 +124,14 @@ export default function RzzoduePage() {
             <li><strong>Supply:</strong> 300 capped</li>
             <li><strong>Mint:</strong> 0 ETH with sponsored flow</li>
             <li><strong>Physical Redemption:</strong> First 88 holders</li>
-            <li><strong>Format:</strong> On-chain SVG traits + provenance metadata</li>
+            <li><strong>Trait Set:</strong> Series, Edition, Variant, Rarity Tier, Rarity Score, Mood</li>
+            <li><strong>Identity Traits:</strong> Figure Archetype, Figure Number, Signal Strength, Glyph Count</li>
+            <li><strong>Provenance:</strong> Source Set + Source Asset embedded in metadata</li>
             <li><strong>Launch:</strong> {launchEtLabel}</li>
           </ul>
         </section>
 
-        <section style={{ marginTop: '1rem' }}>
+        <section id="mint-panel" style={{ marginTop: '1rem' }} className="reveal reveal-delay-2">
           <MintPanel />
           <p className="footer-note">
             Follow launch updates on{' '}
@@ -103,6 +140,10 @@ export default function RzzoduePage() {
           </p>
         </section>
       </main>
+
+      <div className="sticky-mint-cta">
+        <a href="#mint-panel" className="btn btn-primary">Mint Now</a>
+      </div>
     </>
   );
 }

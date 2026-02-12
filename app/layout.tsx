@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Bebas_Neue, Work_Sans } from 'next/font/google';
 import Providers from './providers';
+import MusicPlayer from '../components/music-player';
 import './globals.css';
 
 const bebas = Bebas_Neue({
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${bebas.variable} ${workSans.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <MusicPlayer />
+        </Providers>
       </body>
     </html>
   );
