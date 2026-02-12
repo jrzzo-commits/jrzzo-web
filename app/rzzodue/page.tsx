@@ -4,12 +4,11 @@ import Countdown from '../../components/countdown';
 import MintPanel from '../../components/mint-panel';
 
 const realms = [
-  { id: '005-A', src: '/images/rzzodue_5.jpg' },
-  { id: '007-A', src: '/images/rzzodue_7.jpg' },
-  { id: '005-B', src: '/images/rzzodue_5.jpg' },
-  { id: '007-B', src: '/images/rzzodue_7.jpg' },
-  { id: '005-C', src: '/images/rzzodue_5.jpg' },
-  { id: '007-C', src: '/images/rzzodue_7.jpg' }
+  { id: '6835', src: '/images/img_6835.jpg', width: 3500, height: 3500 },
+  { id: '6831', src: '/images/img_6831.jpg', width: 3500, height: 3150 },
+  { id: '6825', src: '/images/img_6825.jpg', width: 3477, height: 3500 },
+  { id: '6827', src: '/images/img_6827.jpg', width: 3500, height: 3336 },
+  { id: '6816', src: '/images/img_6816.jpg', width: 3500, height: 3150 }
 ];
 
 export default function RzzoduePage() {
@@ -36,7 +35,7 @@ export default function RzzoduePage() {
         <section className="gallery">
           {realms.map((realm) => (
             <article className="gallery-card" key={realm.id}>
-              <Image src={realm.src} alt={`Realm ${realm.id}`} width={829} height={373} />
+              <Image src={realm.src} alt={`Realm ${realm.id}`} width={realm.width} height={realm.height} />
               <div className="tag">Realm #{realm.id}</div>
             </article>
           ))}
