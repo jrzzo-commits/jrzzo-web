@@ -5,7 +5,7 @@
   --cream: #ddd7d1;
   --black: #130d0e;
   --panel: #23181a;
-  --muted: #b8aeaa;
+  --muted: #d1c8c3;
 }
 
 * {
@@ -67,6 +67,8 @@ a {
 
 .nav-link {
   border: 1px solid rgba(248, 244, 240, 0.5);
+  background: rgba(18, 10, 11, 0.32);
+  color: var(--white);
   padding: 0.5rem 0.8rem;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -86,6 +88,22 @@ a {
   width: 0.95rem;
   height: 0.95rem;
   fill: currentColor;
+}
+
+.nav-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.home-icon {
+  width: 0.92rem;
+  height: 0.92rem;
+  fill: currentColor;
+}
+
+.nav-home-text {
+  display: inline;
 }
 
 .main {
@@ -157,7 +175,7 @@ a {
   border-top: 1px solid rgba(248, 244, 240, 0.16);
   padding: 0.52rem 0.62rem;
   font-size: 0.78rem;
-  color: var(--cream);
+  color: var(--white);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -220,7 +238,7 @@ a {
   font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--muted);
+  color: rgba(248, 244, 240, 0.84);
 }
 
 .trust-value,
@@ -282,7 +300,7 @@ a {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--muted);
+  color: var(--cream);
 }
 
 .section-title {
@@ -301,7 +319,7 @@ a {
 
 .gallery-hint {
   margin: 0.35rem 0 0.7rem;
-  color: var(--muted);
+  color: var(--cream);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -385,9 +403,11 @@ a {
   font-family: var(--font-bebas), sans-serif;
   letter-spacing: 0.08em;
   font-size: 1.12rem;
-  background: rgba(19, 13, 14, 0.78);
+  background: rgba(12, 8, 9, 0.92);
   border: 1px solid rgba(248, 244, 240, 0.3);
   padding: 0.2rem 0.45rem;
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 }
 
 .lightbox-backdrop {
@@ -542,7 +562,7 @@ a {
   font-size: 0.74rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--white);
 }
 
 .signal-tag {
@@ -552,7 +572,7 @@ a {
   padding: 0.2rem 0.42rem;
   border: 1px solid rgba(248, 244, 240, 0.28);
   background: rgba(19, 13, 14, 0.84);
-  color: var(--cream);
+  color: var(--white);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -692,6 +712,13 @@ a {
   .nav-link {
     font-size: 0.66rem;
     padding: 0.42rem 0.48rem;
+  }
+  .nav-home-text {
+    display: none;
+  }
+  .nav-home-link {
+    min-width: 2.1rem;
+    justify-content: center;
   }
   .trust-bar {
     grid-template-columns: 1fr;

@@ -37,6 +37,12 @@ export default function RzzoduePage() {
         <div className="header-wrap">
           <BrandLogo />
           <div className="header-actions">
+            <Link href="/" className="nav-link nav-home-link" aria-label="Home">
+              <svg className="home-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3.2 3.6 10v10.8h6.2v-6.7h4.4v6.7h6.2V10L12 3.2Zm0-2.2 10.8 8.8v13H12v-6.7h0v6.7H1.2v-13L12 1Z" />
+              </svg>
+              <span className="nav-home-text">Home</span>
+            </Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <Link href="/plots" className="nav-link">Plots</Link>
             <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link nav-icon-link" aria-label="JRZZO on X">
@@ -44,7 +50,6 @@ export default function RzzoduePage() {
                 <path d="M18.9 2H22l-6.77 7.75L23 22h-6.1l-4.77-6.24L6.7 22H3.58l7.25-8.28L1 2h6.25l4.31 5.68L18.9 2Zm-1.07 18h1.69L6.33 3.9H4.52L17.83 20Z" />
               </svg>
             </a>
-            <Link href="/" className="nav-link">Back</Link>
           </div>
         </div>
       </header>
