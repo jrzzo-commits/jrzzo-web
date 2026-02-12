@@ -39,7 +39,11 @@ export default function RzzoduePage() {
           <div className="header-actions">
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <Link href="/plots" className="nav-link">Plots</Link>
-            <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link">@jrzzo_</a>
+            <a href="https://x.com/jrzzo_" target="_blank" rel="noreferrer" className="nav-link nav-icon-link" aria-label="JRZZO on X">
+              <svg className="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M18.9 2H22l-6.77 7.75L23 22h-6.1l-4.77-6.24L6.7 22H3.58l7.25-8.28L1 2h6.25l4.31 5.68L18.9 2Zm-1.07 18h1.69L6.33 3.9H4.52L17.83 20Z" />
+              </svg>
+            </a>
             <Link href="/" className="nav-link">Back</Link>
           </div>
         </div>
