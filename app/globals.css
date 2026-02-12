@@ -19,7 +19,9 @@ body {
   background: radial-gradient(circle at 10% 10%, #2a1c1f 0%, var(--black) 40%);
   color: var(--white);
   font-family: var(--font-work), sans-serif;
-  overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 a {
@@ -44,8 +46,9 @@ button:focus-visible {
 }
 
 .header-wrap {
-  width: min(1160px, 94vw);
+  width: min(1160px, 100%);
   margin: 0 auto;
+  padding-inline: clamp(0.45rem, 1.6vw, 0.9rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,6 +72,14 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   line-height: 1;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: invert(1) brightness(1.14) contrast(1.04);
 }
 
 .nav-link {
@@ -120,9 +131,11 @@ button:focus-visible {
 }
 
 .main {
-  width: min(1160px, 94vw);
+  width: min(1160px, 100%);
   margin: 0 auto;
-  padding: 2rem 0 9.5rem;
+  padding-inline: clamp(0.45rem, 1.6vw, 0.9rem);
+  padding-top: 2rem;
+  padding-bottom: 9.5rem;
 }
 
 .hero {
@@ -617,6 +630,7 @@ button:focus-visible {
   bottom: 1rem;
   z-index: 90;
   width: min(320px, calc(100vw - 2rem));
+  max-width: calc(100vw - 1.2rem);
   border: 1px solid rgba(248, 244, 240, 0.28);
   background: rgba(16, 9, 10, 0.92);
   backdrop-filter: blur(6px);
@@ -681,6 +695,7 @@ button:focus-visible {
   border: 1px solid rgba(248, 244, 240, 0.28);
   background: rgba(12, 8, 9, 0.9);
   backdrop-filter: blur(6px);
+  max-width: calc(100vw - 1.2rem);
 }
 
 .sticky-mint-cta .btn {
