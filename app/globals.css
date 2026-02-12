@@ -84,15 +84,19 @@ button:focus-visible {
   align-items: center;
   line-height: 1;
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  margin-top: -2px;
+  margin-bottom: -2px;
 }
 
 .logo-mark {
   display: block;
   width: auto;
-  height: clamp(24px, 3.6vw, 38px);
-  max-width: min(62vw, 188px);
+  height: clamp(31px, 4.7vw, 50px);
+  max-width: min(70vw, 244px);
   object-fit: contain;
-  filter: brightness(1.08) contrast(1.06) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  filter: brightness(1.26) contrast(1.16) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
 }
 
 .nav-link {
@@ -797,9 +801,14 @@ button:focus-visible {
     max-width: 100%;
   }
   .logo-mark {
-    height: 30px;
-    max-width: 62vw;
-    filter: brightness(1.2) contrast(1.1) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.42));
+    height: 40px;
+    max-width: 78vw;
+    filter: brightness(1.45) contrast(1.22) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+    transform: translateY(2px);
+  }
+  .logo {
+    margin-top: -7px;
+    margin-bottom: -7px;
   }
   .nav-link {
     font-size: 0.62rem;
