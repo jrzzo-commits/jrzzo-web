@@ -135,9 +135,6 @@ export default function HomePage() {
             <Link href="/research" className="btn btn-primary">Open Research Tab</Link>
             <Link href="/music-whitepaper" className="btn">Read Music Whitepaper</Link>
           </div>
-          <p style={{ marginTop: '0.8rem' }}>
-            This section records the full build direction so music research work stays visible in one place while launch mechanics remain unchanged.
-          </p>
         </section>
 
         <section className="detail-panel reveal reveal-delay-2">
