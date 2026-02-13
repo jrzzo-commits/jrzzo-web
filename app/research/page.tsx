@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import BrandLogo from '../../components/brand-logo';
+import FrequencyAtlasVisualizer from '../../components/frequency-atlas-visualizer';
 
 export default function ResearchPage() {
   return (
@@ -29,22 +30,14 @@ export default function ResearchPage() {
             Central hub for interactive research and long-form papers with direct access to live demos, source bundles,
             and publication-ready documents.
           </p>
-          <div className="actions">
-            <Link href="/visualizer" className="btn btn-primary">Open Visualizer</Link>
-            <Link href="/music-whitepaper" className="btn">Read Music Whitepaper</Link>
-          </div>
         </section>
 
         <section className="detail-panel reveal reveal-delay-1">
           <h2 className="section-title" style={{ marginTop: 0 }}>Current Research • Frequency Atlas</h2>
           <p>
-            Neuro-oscillatory intervention atlas with downloadable implementation files and publication-ready research paper.
+            Integrated live visualizer using the attached Frequency Atlas intervention dataset.
           </p>
-          <ul className="detail-list">
-            <li><strong>Research Coverage:</strong> 156 studies and 17,000+ participants.</li>
-            <li><strong>Package:</strong> Complete source app with pages/components/data and deployment docs.</li>
-            <li><strong>Paper:</strong> Full PDF research paper with methods, findings, synthesis, and references.</li>
-          </ul>
+          <FrequencyAtlasVisualizer />
           <div className="actions" style={{ marginTop: '0.8rem' }}>
             <a href="/research/frequency-atlas-complete.zip" className="btn btn-primary" target="_blank" rel="noopener noreferrer">Download Frequency Atlas ZIP</a>
             <a href="/research/frequency-atlas-research-paper.pdf" className="btn" target="_blank" rel="noopener noreferrer">Open Frequency Atlas Paper (PDF)</a>
