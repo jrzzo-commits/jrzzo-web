@@ -1567,3 +1567,26 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Frequency paper page */
+.frequency-paper-wrap {
+  padding-bottom: 2.2rem;
+}
+
+.frequency-paper-view {
+  padding: 0.45rem;
+  overflow: hidden;
+}
+
+.frequency-paper-frame {
+  width: 100%;
+  min-height: 78vh;
+  border: 0;
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .frequency-paper-frame {
+    min-height: 68vh;
+  }
+}

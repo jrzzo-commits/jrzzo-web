@@ -27,22 +27,21 @@ export default function ResearchPage() {
           <h1 className="hero-title">RESEARCH</h1>
           <p className="hero-subtitle">Music Lab + Publishing Track</p>
           <p className="hero-copy">
-            Central hub for interactive research and long-form papers with direct access to live demos, source bundles,
-            and publication-ready documents.
+            Central hub for interactive research and long-form papers with direct access to live demos and publication-ready documents.
           </p>
         </section>
 
         <section className="detail-panel reveal reveal-delay-1">
           <h2 className="section-title" style={{ marginTop: 0 }}>Current Research • Frequency Atlas</h2>
-          <p>
-            Integrated live visualizer using the attached Frequency Atlas intervention dataset.
-          </p>
-          <FrequencyAtlasVisualizer />
+          <ul className="detail-list">
+            <li><strong>Visualizer:</strong> Live intervention explorer with frequency-band response modeling.</li>
+            <li><strong>Research Scope:</strong> 150+ studies with intervention evidence and combined protocol patterns.</li>
+            <li><strong>Paper:</strong> Formal Frequency Atlas paper with downloadable PDF.</li>
+          </ul>
           <div className="actions" style={{ marginTop: '0.8rem' }}>
-            <a href="/research/frequency-atlas-complete.zip" className="btn btn-primary" target="_blank" rel="noopener noreferrer">Download Frequency Atlas ZIP</a>
-            <a href="/research/frequency-atlas-research-paper.pdf" className="btn" target="_blank" rel="noopener noreferrer">Open Frequency Atlas Paper (PDF)</a>
-            <a href="/research/frequency-atlas-download-guide.md" className="btn" target="_blank" rel="noopener noreferrer">Open Download Guide</a>
+            <Link href="/frequency-paper" className="btn btn-primary">Read Frequency Paper</Link>
           </div>
+          <FrequencyAtlasVisualizer />
         </section>
 
         <section className="detail-panel reveal reveal-delay-2">
