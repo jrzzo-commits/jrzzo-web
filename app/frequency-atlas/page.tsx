@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import BrandLogo from '../../components/brand-logo';
 
-export default function ResearchPage() {
+export default function FrequencyAtlasPage() {
   return (
-    <div className="page-theme page-theme-research-hub">
+    <div className="page-theme page-theme-visualizer">
       <header className="site-header">
         <div className="header-wrap">
           <BrandLogo />
@@ -14,8 +14,8 @@ export default function ResearchPage() {
               </svg>
               <span className="nav-home-text">Home</span>
             </Link>
-            <Link href="/open-editions" className="nav-link">Open Editions</Link>
-            <Link href="/plots" className="nav-link">Plots</Link>
+            <Link href="/research" className="nav-link">Research</Link>
+            <Link href="/frequency-paper" className="nav-link">Frequency Paper</Link>
             <Link href="/rzzodue" className="nav-link">Enter Drop</Link>
           </div>
         </div>
@@ -23,15 +23,15 @@ export default function ResearchPage() {
 
       <main className="main">
         <section className="hero reveal">
-          <h1 className="hero-title">RESEARCH</h1>
-          <p className="hero-subtitle">Music Lab + Publishing Track</p>
+          <h1 className="hero-title">FREQUENCY ATLAS</h1>
+          <p className="hero-subtitle">Neuro-Oscillatory Intervention Project</p>
           <p className="hero-copy">
-            Central hub for interactive research and long-form papers with direct access to live demos and publication-ready documents.
+            Frequency Atlas research overview page. Open the live visualizer in its own section, or read the full paper.
           </p>
         </section>
 
         <section className="detail-panel reveal reveal-delay-1">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Current Research • Frequency Atlas</h2>
+          <h2 className="section-title" style={{ marginTop: 0 }}>Frequency Atlas Summary</h2>
           <ul className="detail-list">
             <li><strong>Visualizer:</strong> Live intervention explorer with frequency-band response modeling.</li>
             <li><strong>Frequency Whitepaper:</strong> Formal Frequency Atlas research paper with embedded reader + downloadable PDF.</li>
@@ -42,24 +42,6 @@ export default function ResearchPage() {
             <Link href="/frequency-atlas-visualizer" className="btn btn-primary">Open Visualizer</Link>
             <Link href="/frequency-paper" className="btn">Read Frequency Paper</Link>
           </div>
-        </section>
-
-        <section className="detail-panel reveal reveal-delay-2">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Current Research • Spotify Audio Universe</h2>
-          <ul className="detail-list">
-            <li><strong>Visualizer:</strong> Interactive 25,000-track canvas with UMAP/t-SNE views.</li>
-            <li><strong>Music Whitepaper:</strong> Visualizing Musical Similarity Through Dimensionality Reduction.</li>
-            <li><strong>Export Path:</strong> PNG output for publication and social distribution.</li>
-          </ul>
-          <div className="actions" style={{ marginTop: '0.8rem' }}>
-            <Link href="/visualizer" className="btn btn-primary">Open Visualizer</Link>
-            <Link href="/music-whitepaper" className="btn">Read Music Whitepaper</Link>
-          </div>
-        </section>
-
-        <section className="detail-panel reveal reveal-delay-2">
-          <h2 className="section-title" style={{ marginTop: 0 }}>Future Research</h2>
-          <p>still reseaching... future reseach pending.</p>
         </section>
       </main>
     </div>
