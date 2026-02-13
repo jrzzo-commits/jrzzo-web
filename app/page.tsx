@@ -33,7 +33,7 @@ const plotSignals = [
 
 export default function HomePage() {
   return (
-    <>
+    <div className="page-theme page-theme-home">
       <header className="site-header">
         <div className="header-wrap">
           <BrandLogo />
@@ -46,6 +46,7 @@ export default function HomePage() {
             </Link>
             <Link href="/open-editions" className="nav-link">Open Editions</Link>
             <Link href="/plots" className="nav-link">Plots</Link>
+            <Link href="/research" className="nav-link">Research</Link>
             <a href="#submissions" className="nav-link">Submissions</a>
             <Link href="/rzzodue" className="nav-link">Enter Drop</Link>
           </div>
@@ -63,8 +64,9 @@ export default function HomePage() {
             </p>
             <div className="actions">
               <Link href="/rzzodue" className="btn btn-primary">Open Rzzodue</Link>
-              <a href="https://x.com/jrzzo_" className="btn" target="_blank" rel="noreferrer">X @jrzzo_</a>
-              <a href="https://warpcast.com/jrzzo" className="btn" target="_blank" rel="noreferrer">Farcaster @jrzzo</a>
+              <Link href="/research" className="btn">Open Research</Link>
+              <a href="https://x.com/jrzzo_" className="btn" target="_blank" rel="noopener noreferrer">X @jrzzo_</a>
+              <a href="https://warpcast.com/jrzzo" className="btn" target="_blank" rel="noopener noreferrer">Farcaster @jrzzo</a>
             </div>
           </div>
           <article className="home-feature-card">
@@ -103,13 +105,39 @@ export default function HomePage() {
           <ul className="detail-list">
             <li>
               <strong>Previous Open Edition:</strong>{' '}
-              <a className="trust-link" href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer">
+              <a className="trust-link" href="https://opensea.io/collection/som1" target="_blank" rel="noopener noreferrer">
                 opensea.io/collection/som1
               </a>
             </li>
             <li><strong>Year:</strong> 2022</li>
             <li><strong>Concept:</strong> Nature vs Nurture • Order vs Chaos</li>
           </ul>
+        </section>
+
+        <section className="detail-panel reveal reveal-delay-2">
+          <h2 className="section-title" style={{ marginTop: 0 }}>General Research</h2>
+          <p>
+            Active research build list for soundtrack direction and data-driven curation.
+          </p>
+          <ul className="detail-list">
+            <li><strong>Build Name:</strong> SpotifyVisualization (React + canvas rendering)</li>
+            <li><strong>Dataset Mode:</strong> 25,000 synthetic tracks across 30 genres for rapid exploration</li>
+            <li><strong>Core Flow:</strong> generate data → scale features → compute UMAP/t-SNE layouts → interactive canvas</li>
+            <li><strong>Controls:</strong> genre filters, color modes (genre/valence/energy/popularity), UMAP vs t-SNE toggle</li>
+            <li><strong>Outputs:</strong> clickable track inspection cards + PNG export for publishing research stills</li>
+            <li><strong>Research Docs:</strong> inline whitepaper mode with method notes and findings sections</li>
+            <li><strong>Research Hub:</strong> <Link className="trust-link" href="/research">Open Research Tab</Link></li>
+            <li><strong>Research Whitepaper:</strong> <Link className="trust-link" href="/music-whitepaper">Visualizing Musical Similarity Through Dimensionality Reduction</Link></li>
+            <li><strong>Deployment Track:</strong> Netlify (recommended), Vercel, or GitHub Pages free hosting path</li>
+            <li><strong>Ops Checklist:</strong> mobile validation, cache headers, analytics hook, troubleshooting pass</li>
+          </ul>
+          <div className="actions" style={{ marginTop: '0.9rem' }}>
+            <Link href="/research" className="btn btn-primary">Open Research Tab</Link>
+            <Link href="/music-whitepaper" className="btn">Read Music Whitepaper</Link>
+          </div>
+          <p style={{ marginTop: '0.8rem' }}>
+            This section records the full build direction so music research work stays visible in one place while launch mechanics remain unchanged.
+          </p>
         </section>
 
         <section className="detail-panel reveal reveal-delay-2">
@@ -179,6 +207,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 }

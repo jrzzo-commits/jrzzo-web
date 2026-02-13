@@ -20,7 +20,7 @@ export default function OpenEditionsPage() {
               </svg>
               <span className="nav-home-text">Home</span>
             </Link>
-            <a href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer" className="nav-link">
+            <a href="https://opensea.io/collection/som1" target="_blank" rel="noopener noreferrer" className="nav-link">
               View on OpenSea
             </a>
             <Link href="/plots" className="nav-link">Plots</Link>
@@ -38,7 +38,7 @@ export default function OpenEditionsPage() {
             intelligence. The Shades of Midnight process was created over one year, and S.O.M.1 is the introduction piece by JRZZO.
           </p>
           <div className="actions">
-            <a className="btn btn-primary" href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href="https://opensea.io/collection/som1" target="_blank" rel="noopener noreferrer">
               OpenSea Collection
             </a>
             <Link href="/rzzodue" className="btn">Go To Rzzodue</Link>
@@ -50,7 +50,7 @@ export default function OpenEditionsPage() {
           <ul className="detail-list">
             <li>
               <strong>OpenSea:</strong>{' '}
-              <a className="trust-link" href="https://opensea.io/collection/som1" target="_blank" rel="noreferrer">
+              <a className="trust-link" href="https://opensea.io/collection/som1" target="_blank" rel="noopener noreferrer">
                 opensea.io/collection/som1
               </a>
             </li>

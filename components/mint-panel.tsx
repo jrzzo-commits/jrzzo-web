@@ -152,13 +152,13 @@ export default function MintPanel() {
       </p>
       {txUrl && (
         <p className="muted" style={{ marginTop: 6, wordBreak: 'break-word' }}>
-          Tx: <a href={txUrl} target="_blank" rel="noreferrer">{lastTxHash}</a>
+          Tx: <a href={txUrl} target="_blank" rel="noopener noreferrer">{lastTxHash}</a>
         </p>
       )}
       {txUrl && (
         <div style={{ display: 'flex', gap: 10, marginTop: 8, flexWrap: 'wrap' }}>
-          <a className="nav-link" href={shareX} target="_blank" rel="noreferrer">Share on X</a>
-          <a className="nav-link" href={shareFarcaster} target="_blank" rel="noreferrer">Share on Farcaster</a>
+          <a className="nav-link" href={shareX} target="_blank" rel="noopener noreferrer">Share on X</a>
+          <a className="nav-link" href={shareFarcaster} target="_blank" rel="noopener noreferrer">Share on Farcaster</a>
         </div>
       )}
     </div>
