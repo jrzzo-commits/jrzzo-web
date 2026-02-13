@@ -1590,3 +1590,329 @@ button:focus-visible {
     min-height: 68vh;
   }
 }
+
+/* Frequency whitepaper page */
+.frequency-whitepaper-page {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(74, 158, 255, 0.11), transparent 42%),
+    radial-gradient(circle at 82% 16%, rgba(124, 58, 237, 0.1), transparent 45%),
+    radial-gradient(circle at 45% 82%, rgba(16, 185, 129, 0.08), transparent 46%),
+    #0a0e1a;
+}
+
+.frequency-whitepaper-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem 3rem;
+}
+
+.frequency-whitepaper-hero {
+  text-align: center;
+  padding: 1rem 0 1.4rem;
+}
+
+.frequency-whitepaper-badge {
+  margin: 0;
+  display: inline-block;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #87bcff;
+  border: 1px solid rgba(78, 132, 198, 0.5);
+  background: rgba(17, 28, 45, 0.8);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+}
+
+.frequency-whitepaper-title {
+  margin: 0.9rem 0 0.3rem;
+  font-size: clamp(2.2rem, 5vw, 3.9rem);
+  letter-spacing: 0.02em;
+  color: #f8fbff;
+}
+
+.frequency-whitepaper-subtitle {
+  margin: 0;
+  color: #c3d8ef;
+  font-size: clamp(1rem, 2vw, 1.34rem);
+  font-family: var(--font-work), sans-serif;
+}
+
+.frequency-whitepaper-meta {
+  margin: 0.75rem 0 0;
+  color: #8ea8c7;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+}
+
+.frequency-whitepaper-print {
+  border: 1px solid rgba(132, 175, 222, 0.5);
+  background: rgba(22, 33, 50, 0.92);
+  color: #eaf5ff;
+  border-radius: 0;
+  padding: 0.58rem 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.frequency-whitepaper-print:hover {
+  background: rgba(38, 53, 76, 0.95);
+}
+
+.frequency-whitepaper-paper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(11, 17, 30, 0.9);
+  border: 1px solid rgba(85, 123, 165, 0.46);
+  padding: 1.15rem 1rem;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+}
+
+.frequency-whitepaper-section + .frequency-whitepaper-section {
+  margin-top: 1.7rem;
+  border-top: 1px solid rgba(91, 127, 165, 0.34);
+  padding-top: 1.2rem;
+}
+
+.frequency-whitepaper-section h2 {
+  margin: 0 0 0.55rem;
+  color: #7fc0ff;
+  font-size: clamp(1.38rem, 3vw, 2rem);
+}
+
+.frequency-whitepaper-section h3 {
+  margin: 0.95rem 0 0.38rem;
+  color: #e8f4ff;
+  font-size: clamp(1.03rem, 2vw, 1.34rem);
+}
+
+.frequency-whitepaper-section h4 {
+  margin: 0.75rem 0 0.3rem;
+  color: #d7ebff;
+  font-size: 0.96rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.frequency-whitepaper-section p,
+.frequency-whitepaper-section li {
+  font-family: var(--font-work), sans-serif;
+  color: #d5e4f4;
+  line-height: 1.62;
+}
+
+.frequency-whitepaper-section ul,
+.frequency-whitepaper-section ol {
+  margin: 0.5rem 0 0.1rem;
+  padding-left: 1.1rem;
+}
+
+.frequency-whitepaper-abstract {
+  border: 1px solid rgba(97, 145, 196, 0.45);
+  border-left: 4px solid #4a9eff;
+  background: rgba(20, 30, 45, 0.9);
+  padding: 0.95rem;
+}
+
+.frequency-whitepaper-keywords {
+  margin: 0.7rem 0 0;
+  font-style: italic;
+  color: #b5cae1;
+}
+
+.frequency-whitepaper-band-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.frequency-whitepaper-band {
+  border: 1px solid rgba(106, 149, 196, 0.42);
+  background: rgba(16, 25, 40, 0.9);
+  border-left-width: 4px;
+  padding: 0.68rem;
+}
+
+.frequency-whitepaper-band h4 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.frequency-whitepaper-band h4 span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.72rem;
+  color: #a7caed;
+}
+
+.frequency-whitepaper-band p {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+}
+
+.frequency-whitepaper-band.delta {
+  border-left-color: #7c3aed;
+}
+
+.frequency-whitepaper-band.theta {
+  border-left-color: #3b82f6;
+}
+
+.frequency-whitepaper-band.alpha {
+  border-left-color: #10b981;
+}
+
+.frequency-whitepaper-band.beta {
+  border-left-color: #f59e0b;
+}
+
+.frequency-whitepaper-band.gamma {
+  border-left-color: #ef4444;
+}
+
+.frequency-whitepaper-evidence {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 0.45rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+
+.frequency-whitepaper-evidence.gold {
+  background: linear-gradient(120deg, #fbbf24, #f59e0b);
+  color: #111;
+}
+
+.frequency-whitepaper-evidence.silver {
+  background: linear-gradient(120deg, #dde5f0, #95a8bd);
+  color: #111;
+}
+
+.frequency-whitepaper-table-wrap {
+  overflow-x: auto;
+  margin-top: 0.65rem;
+}
+
+.frequency-whitepaper-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 660px;
+}
+
+.frequency-whitepaper-table th,
+.frequency-whitepaper-table td {
+  border: 1px solid rgba(93, 135, 177, 0.4);
+  padding: 0.5rem;
+  text-align: left;
+  font-family: var(--font-work), sans-serif;
+  font-size: 0.84rem;
+  color: #d9e7f7;
+}
+
+.frequency-whitepaper-table th {
+  background: rgba(27, 41, 60, 0.9);
+  color: #aad0f5;
+  font-size: 0.71rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.frequency-whitepaper-note {
+  margin-top: 0.48rem;
+  color: #9fb8d3;
+  font-size: 0.84rem;
+}
+
+.frequency-whitepaper-callout {
+  border: 1px solid rgba(94, 134, 172, 0.44);
+  border-left: 4px solid #4a9eff;
+  background: rgba(19, 30, 45, 0.86);
+  padding: 0.7rem;
+  margin: 0.7rem 0;
+}
+
+.frequency-whitepaper-callout.key-insight {
+  border-left-color: #ef4444;
+}
+
+.frequency-whitepaper-callout.hypothesis {
+  border-left-color: #10b981;
+}
+
+.frequency-whitepaper-callout-title {
+  margin: 0 0 0.3rem;
+  color: #9dc8f4;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.frequency-whitepaper-equation {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.79rem;
+  color: #d7e9fb;
+}
+
+.frequency-whitepaper-references {
+  padding-left: 1.2rem;
+}
+
+.frequency-whitepaper-references li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .frequency-whitepaper-shell {
+    padding: 0.7rem 0.6rem 2rem;
+  }
+
+  .frequency-whitepaper-paper {
+    padding: 0.9rem 0.75rem;
+  }
+}
+
+@media print {
+  .frequency-whitepaper-page {
+    background: #fff !important;
+  }
+
+  .frequency-whitepaper-paper {
+    border: 0;
+    box-shadow: none;
+    background: #fff;
+    max-width: none;
+    padding: 0;
+  }
+
+  .frequency-whitepaper-section h2,
+  .frequency-whitepaper-section h3,
+  .frequency-whitepaper-section h4,
+  .frequency-whitepaper-section p,
+  .frequency-whitepaper-section li,
+  .frequency-whitepaper-note,
+  .frequency-whitepaper-keywords {
+    color: #111 !important;
+  }
+
+  .frequency-whitepaper-table th,
+  .frequency-whitepaper-table td {
+    color: #111 !important;
+    border-color: #aaa;
+  }
+
+  .frequency-whitepaper-callout,
+  .frequency-whitepaper-abstract,
+  .frequency-whitepaper-band {
+    background: #fff;
+    border-color: #ccc;
+  }
+}

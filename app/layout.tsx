@@ -17,13 +17,29 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Rzzodue | jrzzo.com',
+  metadataBase: new URL('https://jrzzo.com'),
+  title: {
+    default: 'JRZZO',
+    template: '%s | JRZZO'
+  },
   description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
+  icons: {
+    icon: '/brand/jrzzo.svg',
+    shortcut: '/brand/jrzzo.svg',
+    apple: '/brand/jrzzo-vector.png'
+  },
   openGraph: {
-    title: 'Rzzodue | jrzzo.com',
+    title: 'JRZZO',
     description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
     url: 'https://jrzzo.com',
-    siteName: 'jrzzo'
+    siteName: 'JRZZO',
+    images: ['/brand/jrzzo-vector.png']
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'JRZZO',
+    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
+    images: ['/brand/jrzzo-vector.png']
   }
 };
 
