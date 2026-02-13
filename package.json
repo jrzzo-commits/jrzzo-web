@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "smoke:research-frequency": "bash scripts/smoke-research-frequency.sh"
   },
   "dependencies": {
     "next": "^14.2.35",
