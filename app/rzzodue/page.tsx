@@ -27,8 +27,8 @@ const moodPools = [
 ];
 
 export default function RzzoduePage() {
-  const launchUtc = '2026-02-16T13:00:00Z';
-  const launchEtLabel = 'Monday, February 16, 2026 at 8:00 AM ET';
+  const launchUtc = '2026-02-16T16:30:00Z';
+  const launchPstLabel = 'Monday, February 16, 2026 at 8:30 AM PST';
   const contractHref = collectionAddress ? `https://basescan.org/address/${collectionAddress}` : '';
 
   return (
@@ -58,7 +58,7 @@ export default function RzzoduePage() {
         <section className="hero reveal">
           <h1 className="hero-title">RZZODUE</h1>
           <p className="hero-subtitle">300 On-Chain Portals • Mint opens in <Countdown /></p>
-          <p className="hero-time">Mint opens {launchEtLabel} • {launchUtc}</p>
+          <p className="hero-time">Mint opens {launchPstLabel} • {launchUtc}</p>
           <p className="hero-copy">
             300 curated portals on Base with deterministic trait generation: rarity tiers, figure archetypes,
             figure numbers, signal strength, glyph count, and rarity-aware moods.
@@ -92,6 +92,9 @@ export default function RzzoduePage() {
             )}
           </div>
         </section>
+        <p className="muted" style={{ marginTop: 12 }}>
+          Pre-reveal art remains until sold out. Reveal has no fixed time and is finalized manually after 300/300 mint.
+        </p>
 
         <section className="trait-grid reveal reveal-delay-1">
           <article className="detail-panel trait-panel">
@@ -131,7 +134,7 @@ export default function RzzoduePage() {
             with optional physical redemption for the first 88 holders.
           </p>
           <p>
-            Launch is locked for {launchEtLabel}. Mint controls below are live-ready for the Base deployment and update
+            Launch is locked for {launchPstLabel}. Mint controls below are live-ready for the Base deployment and update
             supply progress in real time.
           </p>
           <ul className="detail-list">
@@ -141,7 +144,8 @@ export default function RzzoduePage() {
             <li><strong>Trait Set:</strong> Series, Edition, Variant, Rarity Tier, Rarity Score, Mood</li>
             <li><strong>Identity Traits:</strong> Figure Archetype, Figure Number, Signal Strength, Glyph Count</li>
             <li><strong>Provenance:</strong> Source Set + Source Asset embedded in metadata</li>
-            <li><strong>Launch:</strong> {launchEtLabel}</li>
+            <li><strong>Launch:</strong> {launchPstLabel}</li>
+            <li><strong>Reveal:</strong> TBA after sellout (manual finalization)</li>
           </ul>
         </section>
 

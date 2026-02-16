@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: 'JRZZO',
     template: '%s | JRZZO'
   },
-  description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
+  description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:30 AM PST.',
   icons: {
     icon: '/brand/jrzzo.svg',
     shortcut: '/brand/jrzzo.svg',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'JRZZO',
-    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
+    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:30 AM PST.',
     url: 'https://jrzzo.com',
     siteName: 'JRZZO',
     images: ['/brand/jrzzo-vector.png']
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'JRZZO',
-    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:00 AM ET.',
+    description: '300 on-chain desert realms. Free mint on Base. Launch: Feb 16, 2026 at 8:30 AM PST.',
     images: ['/brand/jrzzo-vector.png']
   }
 };
