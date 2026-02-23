@@ -553,6 +553,111 @@ button:focus-visible {
   line-height: 1.7;
 }
 
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+}
+
+.project-card {
+  border: 1px solid rgba(248, 244, 240, 0.24);
+  background: rgba(18, 10, 11, 0.58);
+  padding: 0.8rem;
+}
+
+.project-card h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-bebas), sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  font-size: 1.45rem;
+}
+
+.project-card p {
+  margin: 0;
+}
+
+.mint-preview {
+  margin-top: 0.8rem;
+  border: 1px solid rgba(248, 244, 240, 0.22);
+  background: linear-gradient(160deg, rgba(27, 14, 16, 0.88), rgba(16, 10, 11, 0.92));
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.mint-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mint-preview-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: radial-gradient(circle at 22% 18%, rgba(214, 31, 38, 0.22), rgba(12, 8, 9, 0.95) 60%);
+}
+
+.mint-preview-logo {
+  width: clamp(130px, 32vw, 230px);
+  height: auto;
+  opacity: 0.92;
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.mint-preview-placeholder span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+}
+
+.mint-guide {
+  margin-top: 0.75rem;
+  border: 1px solid rgba(248, 244, 240, 0.28);
+  background: linear-gradient(135deg, rgba(22, 14, 15, 0.94), rgba(43, 16, 18, 0.85));
+  padding: 0.75rem 0.85rem;
+  box-shadow: inset 0 0 0 1px rgba(214, 31, 38, 0.18);
+}
+
+.mint-guide-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red-primary);
+}
+
+.mint-guide-title {
+  margin: 0.32rem 0 0;
+  font-family: var(--font-bebas), sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.mint-guide-steps {
+  margin: 0.55rem 0 0;
+  padding-left: 1rem;
+  color: var(--cream);
+  font-size: 0.86rem;
+}
+
+.mint-guide-steps li {
+  margin-top: 0.28rem;
+}
+
 .detail-list {
   margin: 0;
   padding: 0;

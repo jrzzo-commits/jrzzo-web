@@ -4,12 +4,20 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getContract, prepareContractCall, readContract } from 'thirdweb';
 import { ConnectButton, TransactionButton, useActiveAccount } from 'thirdweb/react';
 import { chain, client, collectionAddress } from '../lib/thirdweb';
+import { isIpfsUri, toGatewayUrl } from '../lib/ipfs';
 
 const MAX_SUPPLY = 300n;
 const BASESCAN_TX = 'https://basescan.org/tx/';
+const OPENSEA_COLLECTION = 'https://opensea.io/collection/rzzodue';
+const MAGIC_EDEN_PROFILE = 'https://magiceden.us/u/rzzodue';
+const PREVIEW_TOKEN_ID = 1n;
+const PREVIEW_RETRY_MS = 25000;
+const PREVIEW_MAX_RETRIES = 12;
+
+type PreviewState = 'loading' | 'loaded' | 'error';
 
 function normalizeMintError(message: string): string {
-  if (message.includes('WalletLimitReached')) return 'Wallet limit reached: max 1 mint per wallet right now.';
+  if (message.includes('WalletLimitReached')) return 'Wallet limit reached: max 2 mints per wallet right now.';
   if (message.includes('MintInactive')) return 'Mint is not active yet.';
   if (message.includes('SoldOut')) return 'Sold out.';
   if (message.includes('EnforcedPause')) return 'Mint is temporarily paused.';
@@ -17,11 +25,31 @@ function normalizeMintError(message: string): string {
   return message;
 }
 
+function decodeDataJson(dataUri: string): unknown {
+  const payload = dataUri.split(',')[1] ?? '';
+  const binary = atob(payload);
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  const decoded = new TextDecoder().decode(bytes);
+  return JSON.parse(decoded);
+}
+
+async function preloadImage(url: string): Promise<void> {
+  await new Promise<void>((resolve, reject) => {
+    const img = new window.Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error('Image load failed.'));
+    img.src = url;
+  });
+}
+
 export default function MintPanel() {
   const account = useActiveAccount();
-  const [status, setStatus] = useState('Connect wallet to mint.');
+  const [status, setStatus] = useState('Mint closed. Collection sold out.');
   const [minted, setMinted] = useState<bigint>(0n);
   const [lastTxHash, setLastTxHash] = useState('');
+  const [previewState, setPreviewState] = useState<PreviewState>('loading');
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewNote, setPreviewNote] = useState('Live preview from V2 metadata.');
 
   const contract = useMemo(() => {
     if (!collectionAddress) return null;
@@ -46,6 +74,71 @@ export default function MintPanel() {
     }
   }, [contract]);
 
+  const resolvePreviewUrl = useCallback(async (): Promise<string> => {
+    if (!contract) throw new Error('Contract unavailable.');
+
+    const tokenUriRaw = await readContract({
+      contract,
+      method: 'function tokenURI(uint256 tokenId) view returns (string)',
+      params: [PREVIEW_TOKEN_ID]
+    });
+
+    const tokenUri = String(tokenUriRaw ?? '').trim();
+    if (!tokenUri) throw new Error('Empty tokenURI.');
+
+    if (tokenUri.startsWith('data:application/json;base64,')) {
+      const parsed = decodeDataJson(tokenUri) as { image?: string };
+      if (!parsed.image) throw new Error('Image field missing in data URI metadata.');
+      return toGatewayUrl(parsed.image);
+    }
+
+    const tokenUriGateway = toGatewayUrl(tokenUri);
+    if (tokenUriGateway.endsWith('.json') || isIpfsUri(tokenUri)) {
+      const response = await fetch(tokenUriGateway, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Metadata fetch failed (${response.status}).`);
+      const parsed = (await response.json()) as { image?: string };
+      if (!parsed.image) throw new Error('Image field missing in metadata JSON.');
+      return toGatewayUrl(parsed.image);
+    }
+
+    return tokenUriGateway;
+  }, [contract]);
+
+  useEffect(() => {
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let attempts = 0;
+
+    const run = async () => {
+      if (!contract || cancelled) return;
+      attempts += 1;
+
+      try {
+        setPreviewState('loading');
+        const resolved = await resolvePreviewUrl();
+        await preloadImage(resolved);
+        if (cancelled) return;
+        setPreviewUrl(resolved);
+        setPreviewState('loaded');
+        setPreviewNote('Live preview from V2 metadata.');
+      } catch {
+        if (cancelled) return;
+        setPreviewState('error');
+        setPreviewNote('Media indexing, retrying...');
+        if (attempts < PREVIEW_MAX_RETRIES) {
+          timer = setTimeout(run, PREVIEW_RETRY_MS);
+        }
+      }
+    };
+
+    void run();
+
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
+  }, [contract, resolvePreviewUrl]);
+
   useEffect(() => {
     void refreshMinted();
     const timer = setInterval(() => {
@@ -59,10 +152,7 @@ export default function MintPanel() {
   const soldOut = supplyLeft === 0n;
   const mintDisabled = !account || soldOut;
   const txUrl = lastTxHash ? `${BASESCAN_TX}${lastTxHash}` : '';
-  const shareText = `I minted Rzzodue on Base. Free mint, 300 supply, first 88 redemption eligible.`;
-  const shareTarget = encodeURIComponent('https://jrzzo.com/rzzodue');
-  const shareX = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${shareTarget}`;
-  const shareFarcaster = `https://warpcast.com/~/compose?text=${encodeURIComponent(`${shareText} https://jrzzo.com/rzzodue`)}`;
+  const openSeaWallet = account ? `https://opensea.io/${account.address}` : '';
 
   if (!process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID) {
     return (
@@ -90,16 +180,47 @@ export default function MintPanel() {
     <div className="detail-panel">
       <h3 style={{ marginTop: 0 }}>Mint</h3>
       <p className="muted" style={{ marginTop: 4 }}>
-        Base chain · Free mint · 1 per wallet initially
+        Base chain · Mint closed · Sold out
       </p>
       <p className="muted" style={{ marginTop: 4 }}>
         Minted: {minted.toString()} / {MAX_SUPPLY.toString()} · Left: {supplyLeft.toString()}
       </p>
       {soldOut && (
-        <p className="muted" style={{ marginTop: 4, color: '#f8f4f0' }}>
-          Sold out.
+        <p className="muted" style={{ marginTop: 6, color: '#fff', fontWeight: 700, letterSpacing: '0.04em' }}>
+          Mint Closed - 300/300
         </p>
       )}
+      <div className="mint-preview">
+        {previewState === 'loaded' && previewUrl ? (
+          <img
+            src={previewUrl}
+            alt="Rzzodue live token preview"
+            className="mint-preview-image"
+            onError={() => {
+              setPreviewState('error');
+              setPreviewNote('Media indexing, retrying...');
+            }}
+          />
+        ) : (
+          <div className="mint-preview-placeholder" role="status" aria-live="polite">
+            <img src="/brand/jrzzo.svg" alt="JRZZO" className="mint-preview-logo" />
+            <strong>RZZODUE</strong>
+            <span>Preview loading</span>
+          </div>
+        )}
+      </div>
+      <p className="muted" style={{ marginTop: 6 }}>
+        {previewNote} If marketplace indexing lags, branded placeholder is shown until media resolves.
+      </p>
+      <div className="mint-guide" aria-label="How to mint guide">
+        <p className="mint-guide-kicker">Collector Guide</p>
+        <p className="mint-guide-title">Sold Out &rarr; View Collection &rarr; Track on Marketplaces</p>
+        <ul className="mint-guide-steps">
+          <li>Primary mint is complete (300/300).</li>
+          <li>Use links below for OpenSea and Magic Eden.</li>
+          <li>If traits or images lag, refresh after indexing catches up.</li>
+        </ul>
+      </div>
 
       <div style={{ display: 'flex', gap: 10, marginTop: 12, flexWrap: 'wrap' }}>
         <ConnectButton
@@ -143,6 +264,13 @@ export default function MintPanel() {
           {soldOut ? 'Sold Out' : 'Mint Rzzodue'}
         </TransactionButton>
       </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
+        <a className="nav-link" href={OPENSEA_COLLECTION} target="_blank" rel="noopener noreferrer">OpenSea Collection</a>
+        <a className="nav-link" href={MAGIC_EDEN_PROFILE} target="_blank" rel="noopener noreferrer">Magic Eden Profile</a>
+        {openSeaWallet && (
+          <a className="nav-link" href={openSeaWallet} target="_blank" rel="noopener noreferrer">Your OpenSea Profile</a>
+        )}
+      </div>
 
       <p className="muted" style={{ marginTop: 12 }}>
         {account ? `Connected: ${account.address}` : 'Wallet not connected yet.'}
@@ -150,16 +278,16 @@ export default function MintPanel() {
       <p className="muted" style={{ marginTop: 6, wordBreak: 'break-word' }}>
         {status}
       </p>
+      <p className="muted" style={{ marginTop: 6 }}>
+        V2 sold out with IPFS PNG metadata. V1 remains paused and deprecated.
+      </p>
+      <p className="muted" style={{ marginTop: 6 }}>
+        OpenSea updates first; Magic Eden Base indexing can take a bit.
+      </p>
       {txUrl && (
         <p className="muted" style={{ marginTop: 6, wordBreak: 'break-word' }}>
           Tx: <a href={txUrl} target="_blank" rel="noopener noreferrer">{lastTxHash}</a>
         </p>
-      )}
-      {txUrl && (
-        <div style={{ display: 'flex', gap: 10, marginTop: 8, flexWrap: 'wrap' }}>
-          <a className="nav-link" href={shareX} target="_blank" rel="noopener noreferrer">Share on X</a>
-          <a className="nav-link" href={shareFarcaster} target="_blank" rel="noopener noreferrer">Share on Farcaster</a>
-        </div>
       )}
     </div>
   );

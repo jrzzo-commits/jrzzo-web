@@ -57,13 +57,13 @@ export default function HomePage() {
         <section className="hero home-hero reveal">
           <div className="home-hero-copy">
             <h1 className="hero-title">RZZODUE</h1>
-            <p className="hero-subtitle">Code x Art x Tech • Desert Signal Collection</p>
+            <p className="hero-subtitle">Code x Art x Tech • Desert Signal Collection • Sold Out</p>
             <p className="hero-copy">
               From plotted ink silence to on-chain signal. 300 curated realms on Base with rarity, mood, and provenance
               structure built for clean marketplace indexing and long-term collector narrative.
             </p>
             <div className="actions">
-              <Link href="/rzzodue" className="btn btn-primary">Open Rzzodue</Link>
+              <Link href="/rzzodue" className="btn btn-primary">View Rzzodue</Link>
               <Link href="/research" className="btn">Open Research</Link>
               <a href="https://x.com/jrzzo_" className="btn" target="_blank" rel="noopener noreferrer">X @jrzzo_</a>
               <a href="https://warpcast.com/jrzzo" className="btn" target="_blank" rel="noopener noreferrer">Farcaster @jrzzo</a>
@@ -72,7 +72,7 @@ export default function HomePage() {
           <article className="home-feature-card">
             <Image src="/brand/img_6886.jpg" alt="JRZZO featured studio signal" width={1000} height={1000} />
             <div className="home-feature-caption">
-              <strong>Current Release:</strong> Rzzodue on Base • 300 supply
+              <strong>Current Release:</strong> Rzzodue on Base • Sold Out (300/300)
             </div>
           </article>
         </section>
@@ -83,8 +83,8 @@ export default function HomePage() {
             <div className="stat-label">Total Supply</div>
           </div>
           <div className="stat">
-            <div className="stat-value">FREE</div>
-            <div className="stat-label">Mint Price</div>
+            <div className="stat-value">SOLD</div>
+            <div className="stat-label">Mint Status</div>
           </div>
           <div className="stat">
             <div className="stat-value">88</div>
@@ -95,6 +95,24 @@ export default function HomePage() {
             <div className="stat-label">Network</div>
           </div>
         </div>
+
+        <section className="detail-panel reveal reveal-delay-1">
+          <h2 className="section-title" style={{ marginTop: 0 }}>Projects</h2>
+          <p>Primary collection hub with gallery and rarity access points.</p>
+          <div className="project-grid">
+            <article className="project-card">
+              <h3>Rzzodue</h3>
+              <p>Sold out on Base. 300 portals with live metadata and rarity structure.</p>
+              <div className="actions" style={{ marginTop: '0.6rem' }}>
+                <Link href="/rzzodue#gallery" className="btn btn-primary">Open Gallery</Link>
+                <Link href="/rzzodue#rarity-model" className="btn">View Rarities</Link>
+                <a className="btn" href="https://opensea.io/assets/base/0x442150db63Ba2b062Cc0D5936531dc6961E9B747/1" target="_blank" rel="noopener noreferrer">
+                  OpenSea Token View
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <section id="open-editions" className="detail-panel reveal reveal-delay-1">
           <h2 className="section-title" style={{ marginTop: 0 }}>Open Editions</h2>
@@ -115,24 +133,17 @@ export default function HomePage() {
         </section>
 
         <section className="detail-panel reveal reveal-delay-2">
-          <h2 className="section-title" style={{ marginTop: 0 }}>General Research</h2>
+          <h2 className="section-title" style={{ marginTop: 0 }}>Research Lab</h2>
           <p>
-            Active research build list for soundtrack direction and data-driven curation.
+            Active research programs powering JRZZO publication work, visual studies, and data-backed creative direction.
           </p>
           <ul className="detail-list">
-            <li><strong>Build Name:</strong> SpotifyVisualization (React + canvas rendering)</li>
-            <li><strong>Dataset Mode:</strong> 25,000 synthetic tracks across 30 genres for rapid exploration</li>
-            <li><strong>Core Flow:</strong> generate data → scale features → compute UMAP/t-SNE layouts → interactive canvas</li>
-            <li><strong>Controls:</strong> genre filters, color modes (genre/valence/energy/popularity), UMAP vs t-SNE toggle</li>
-            <li><strong>Outputs:</strong> clickable track inspection cards + PNG export for publishing research stills</li>
-            <li><strong>Research Docs:</strong> inline whitepaper mode with method notes and findings sections</li>
-            <li><strong>Research Hub:</strong> <Link className="trust-link" href="/research">Open Research Tab</Link></li>
-            <li><strong>Research Whitepaper:</strong> <Link className="trust-link" href="/music-whitepaper">Visualizing Musical Similarity Through Dimensionality Reduction</Link></li>
-            <li><strong>Deployment Track:</strong> Netlify (recommended), Vercel, or GitHub Pages free hosting path</li>
-            <li><strong>Ops Checklist:</strong> mobile validation, cache headers, analytics hook, troubleshooting pass</li>
+            <li><strong>Scope:</strong> Frequency Atlas protocols + Spotify Audio Universe mapping</li>
+            <li><strong>Outputs:</strong> Interactive visualizers, publication-ready papers, and exportable visuals</li>
+            <li><strong>Cadence:</strong> Ongoing releases in the dedicated Research Hub</li>
           </ul>
           <div className="actions" style={{ marginTop: '0.9rem' }}>
-            <Link href="/research" className="btn btn-primary">Open Research Tab</Link>
+            <Link href="/research" className="btn btn-primary">Open Research Hub</Link>
             <Link href="/music-whitepaper" className="btn">Read Music Whitepaper</Link>
           </div>
         </section>

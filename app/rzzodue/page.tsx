@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Countdown from '../../components/countdown';
 import MintPanel from '../../components/mint-panel';
 import RealmGallery from '../../components/realm-gallery';
 import BrandLogo from '../../components/brand-logo';
@@ -27,9 +26,10 @@ const moodPools = [
 ];
 
 export default function RzzoduePage() {
-  const launchUtc = '2026-02-16T16:30:00Z';
-  const launchPstLabel = 'Monday, February 16, 2026 at 8:30 AM PST';
+  const launchStatusLabel = 'Mint closed on Base mainnet';
   const contractHref = collectionAddress ? `https://basescan.org/address/${collectionAddress}` : '';
+  const openseaHref = 'https://opensea.io/collection/rzzodue';
+  const magicEdenHref = 'https://magiceden.us/u/rzzodue';
 
   return (
     <>
@@ -57,8 +57,8 @@ export default function RzzoduePage() {
       <main className="main">
         <section className="hero reveal">
           <h1 className="hero-title">RZZODUE</h1>
-          <p className="hero-subtitle">300 On-Chain Portals • Mint opens in <Countdown /></p>
-          <p className="hero-time">Mint opens {launchPstLabel} • {launchUtc}</p>
+          <p className="hero-subtitle">300 On-Chain Portals • Sold Out • Instant Reveal Live</p>
+          <p className="hero-time">300 / 300 Minted • Secondary Live</p>
           <p className="hero-copy">
             300 curated portals on Base with deterministic trait generation: rarity tiers, figure archetypes,
             figure numbers, signal strength, glyph count, and rarity-aware moods.
@@ -78,8 +78,8 @@ export default function RzzoduePage() {
             <span className="trust-value">300</span>
           </div>
           <div className="trust-item">
-            <span className="trust-label">Mint Rule</span>
-            <span className="trust-value">Free • 1/Wallet</span>
+            <span className="trust-label">Status</span>
+            <span className="trust-value">Sold Out</span>
           </div>
           <div className="trust-item">
             <span className="trust-label">Contract</span>
@@ -92,11 +92,16 @@ export default function RzzoduePage() {
             )}
           </div>
         </section>
+        <p className="muted" style={{ marginTop: 10 }}>
+          Marketplace: <a className="trust-link" href={openseaHref} target="_blank" rel="noopener noreferrer">View on OpenSea</a>
+          {' '}•{' '}
+          <a className="trust-link" href={magicEdenHref} target="_blank" rel="noopener noreferrer">View on Magic Eden</a>
+        </p>
         <p className="muted" style={{ marginTop: 12 }}>
-          Pre-reveal art remains until sold out. Reveal has no fixed time and is finalized manually after 300/300 mint.
+          V2 is live on Base mainnet with IPFS PNG metadata. OpenSea updates first; Magic Eden Base indexing can lag briefly.
         </p>
 
-        <section className="trait-grid reveal reveal-delay-1">
+        <section id="rarity-model" className="trait-grid reveal reveal-delay-1">
           <article className="detail-panel trait-panel">
             <h2 className="section-title" style={{ marginTop: 0 }}>Rarity Model</h2>
             <p>
@@ -124,8 +129,18 @@ export default function RzzoduePage() {
           </article>
         </section>
 
-        <h2 className="section-title reveal reveal-delay-2">Realm Gallery</h2>
+        <h2 id="gallery" className="section-title reveal reveal-delay-2">Realm Gallery</h2>
         <RealmGallery realms={realms} />
+        <p className="muted" style={{ marginTop: 10 }}>
+          Full minted set: {' '}
+          <a className="trust-link" href="https://opensea.io/assets/base/0x442150db63Ba2b062Cc0D5936531dc6961E9B747/1" target="_blank" rel="noopener noreferrer">
+            OpenSea contract view
+          </a>
+          {' '}•{' '}
+          <a className="trust-link" href="https://magiceden.us/u/rzzodue" target="_blank" rel="noopener noreferrer">
+            Magic Eden profile
+          </a>
+        </p>
 
         <section className="detail-panel reveal reveal-delay-2">
           <h2 className="section-title" style={{ marginTop: 0 }}>The Story</h2>
@@ -134,18 +149,18 @@ export default function RzzoduePage() {
             with optional physical redemption for the first 88 holders.
           </p>
           <p>
-            Launch is locked for {launchPstLabel}. Mint controls below are live-ready for the Base deployment and update
-            supply progress in real time.
+            Mint is complete and sold out. Reveal is instant through V2 metadata, with secondary links below for
+            collectors following the collection.
           </p>
           <ul className="detail-list">
             <li><strong>Supply:</strong> 300 capped</li>
-            <li><strong>Mint:</strong> 0 ETH with sponsored flow</li>
+            <li><strong>Mint:</strong> Complete (300 / 300)</li>
             <li><strong>Physical Redemption:</strong> First 88 holders</li>
             <li><strong>Trait Set:</strong> Series, Edition, Variant, Rarity Tier, Rarity Score, Mood</li>
             <li><strong>Identity Traits:</strong> Figure Archetype, Figure Number, Signal Strength, Glyph Count</li>
-            <li><strong>Provenance:</strong> Source Set + Source Asset embedded in metadata</li>
-            <li><strong>Launch:</strong> {launchPstLabel}</li>
-            <li><strong>Reveal:</strong> TBA after sellout (manual finalization)</li>
+            <li><strong>Provenance:</strong> Commit-reveal fairness plus fixed IPFS metadata for final PNG artwork</li>
+            <li><strong>Launch:</strong> {launchStatusLabel}</li>
+            <li><strong>Reveal:</strong> Live on V2 metadata</li>
           </ul>
         </section>
 
@@ -177,7 +192,7 @@ export default function RzzoduePage() {
       </main>
 
       <div className="sticky-mint-cta">
-        <a href="#mint-panel" className="btn btn-primary">Mint Now</a>
+        <a href="#mint-panel" className="btn btn-primary">Sold Out</a>
       </div>
     </>
   );
