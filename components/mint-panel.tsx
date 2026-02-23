@@ -8,7 +8,7 @@ import { isIpfsUri, toGatewayUrl } from '../lib/ipfs';
 
 const MAX_SUPPLY = 300n;
 const BASESCAN_TX = 'https://basescan.org/tx/';
-const OPENSEA_COLLECTION = 'https://opensea.io/collection/rzzodue';
+const OPENSEA_V2_TOKEN = 'https://opensea.io/assets/base/0x442150db63Ba2b062Cc0D5936531dc6961E9B747/1';
 const MAGIC_EDEN_PROFILE = 'https://magiceden.us/u/rzzodue';
 const PREVIEW_TOKEN_ID = 1n;
 const PREVIEW_RETRY_MS = 25000;
@@ -231,41 +231,42 @@ export default function MintPanel() {
           }}
         />
 
-        <TransactionButton
-          transaction={() => {
-            if (!account) throw new Error('Connect wallet first.');
-            if (soldOut) throw new Error('Sold out.');
-            return prepareContractCall({
-              contract,
-              method: 'function publicMint()',
-              params: []
-            });
-          }}
-          onTransactionConfirmed={(receipt) => {
-            setLastTxHash(receipt.transactionHash);
-            setStatus(`Mint confirmed.`);
-            void refreshMinted();
-          }}
-          onError={(error) => {
-            setStatus(`Mint failed: ${normalizeMintError(error.message)}`);
-          }}
-          style={{
-            border: '1px solid rgba(248, 244, 240, 0.5)',
-            background: mintDisabled ? '#7b2a2d' : '#d61f26',
-            color: '#fff',
-            padding: '0.65rem 1rem',
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            cursor: mintDisabled ? 'not-allowed' : 'pointer',
-            opacity: mintDisabled ? 0.65 : 1
-          }}
-        >
-          {soldOut ? 'Sold Out' : 'Mint Rzzodue'}
-        </TransactionButton>
+        {!soldOut && (
+          <TransactionButton
+            transaction={() => {
+              if (!account) throw new Error('Connect wallet first.');
+              return prepareContractCall({
+                contract,
+                method: 'function publicMint()',
+                params: []
+              });
+            }}
+            onTransactionConfirmed={(receipt) => {
+              setLastTxHash(receipt.transactionHash);
+              setStatus(`Mint confirmed.`);
+              void refreshMinted();
+            }}
+            onError={(error) => {
+              setStatus(`Mint failed: ${normalizeMintError(error.message)}`);
+            }}
+            style={{
+              border: '1px solid rgba(248, 244, 240, 0.5)',
+              background: mintDisabled ? '#7b2a2d' : '#d61f26',
+              color: '#fff',
+              padding: '0.65rem 1rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: mintDisabled ? 'not-allowed' : 'pointer',
+              opacity: mintDisabled ? 0.65 : 1
+            }}
+          >
+            Mint Rzzodue
+          </TransactionButton>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
-        <a className="nav-link" href={OPENSEA_COLLECTION} target="_blank" rel="noopener noreferrer">OpenSea Collection</a>
+        <a className="nav-link" href={OPENSEA_V2_TOKEN} target="_blank" rel="noopener noreferrer">OpenSea (V2)</a>
         <a className="nav-link" href={MAGIC_EDEN_PROFILE} target="_blank" rel="noopener noreferrer">Magic Eden Profile</a>
         {openSeaWallet && (
           <a className="nav-link" href={openSeaWallet} target="_blank" rel="noopener noreferrer">Your OpenSea Profile</a>

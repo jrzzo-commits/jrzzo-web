@@ -28,7 +28,7 @@ const moodPools = [
 export default function RzzoduePage() {
   const launchStatusLabel = 'Mint closed on Base mainnet';
   const contractHref = collectionAddress ? `https://basescan.org/address/${collectionAddress}` : '';
-  const openseaHref = 'https://opensea.io/collection/rzzodue';
+  const openseaHref = 'https://opensea.io/assets/base/0x442150db63Ba2b062Cc0D5936531dc6961E9B747/1';
   const magicEdenHref = 'https://magiceden.us/u/rzzodue';
 
   return (
